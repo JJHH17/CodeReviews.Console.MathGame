@@ -1,4 +1,12 @@
-﻿Console.WriteLine("Welcome to MathGame!");
+﻿/*
+
+TODO - FIX ARRAY, MAKE SURE IT STORES CORRECT QUANTITY
+Refactor game
+
+*/
+
+
+Console.WriteLine("Welcome to MathGame!");
 Console.WriteLine("Enter an operator and answer the given question!");
 Console.WriteLine("Get all 3 questions right to win!");
 
