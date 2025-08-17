@@ -52,6 +52,10 @@ switch (operatorSelection)
     case '+':
         AdditionResult(number1Int, number2Int);
         break;
+
+    case '-':
+        SubtractionResult(number1Int, number2Int);
+        break;
 }
 
 // Allowing user to select an operator
@@ -99,6 +103,19 @@ void AdditionResult(int num1, int num2)
 }
 
 // Subtractionn method
+void SubtractionResult(int num1, int num2)
+{
+    if (num1 - num2 == answer)
+    {
+        Console.WriteLine("You Win!");
+        score++;
+    }
+    else
+    {
+        Console.WriteLine("You Lose");
+        Console.WriteLine($"You scored {score}");
+    }
+}
 
 // Division method
 
