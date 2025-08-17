@@ -60,6 +60,10 @@ switch (operatorSelection)
     case '/':
         DivisionResult(number1Int, number2Int);
         break;
+
+    case '*':
+        MultiplicationResult(number1Int, number2Int);
+        break;    
 }
 
 // Allowing user to select an operator
@@ -141,3 +145,16 @@ void DivisionResult(int num1, int num2)
 }
 
 // Multiplication method
+void MultiplicationResult(int num1, int num2)
+{
+    if (num1 * num2 == answer)
+    {
+        Console.WriteLine("You Win!");
+        score++;
+    }
+    else
+    {
+        Console.WriteLine("You Lose");
+        Console.WriteLine($"You scored {score}");
+    }
+}
