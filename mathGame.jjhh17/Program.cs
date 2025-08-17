@@ -1,13 +1,19 @@
-﻿
-PrintIntro();
+﻿Console.WriteLine("Welcome to MathGame!");
+Console.WriteLine("Enter an operator and answer the given question!");
+Console.WriteLine("Get all 3 questions right to win!");
 
-// Score counter, if it reaches 5 they win
+// Score counter, if it reaches 3 they win
 int score = 0;
 
 // Generating random numbers
 Random random = new Random();
 int number1 = random.Next(0, 30);
 int number2 = random.Next(0, 30);
+
+// Collecting the operator input and generating the answer
+char operatorSelection = OperatorInput();
+int answer = number1 + operatorSelection + number2;
+Console.WriteLine($"Answer: {answer}");
 
 Console.WriteLine("Enter number 1");
 int number1Int;
@@ -41,13 +47,11 @@ while (true)
     }
 }
 
-
-// Method used to print instructions to user
-void PrintIntro()
+switch (operatorSelection)
 {
-    Console.WriteLine("Welcome to MathGame!");
-    Console.WriteLine("Enter an operator and answer the given question!");
-    Console.WriteLine("Get all 3 questions right to win!");
+    case '+':
+        AdditionResult(number1Int, number2Int);
+        break;
 }
 
 // Allowing user to select an operator
@@ -78,3 +82,24 @@ char OperatorInput()
     }
     return output;
 }
+
+// Addition method
+void AdditionResult(int num1, int num2)
+{
+    if (num1 + num2 == answer)
+    {
+        Console.WriteLine("You Win!");
+        score++;
+    }
+    else
+    {
+        Console.WriteLine("You Lose");
+        Console.WriteLine($"You scored {score}");
+    }
+}
+
+// Subtractionn method
+
+// Division method
+
+// Multiplication method
