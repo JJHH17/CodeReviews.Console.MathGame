@@ -13,8 +13,11 @@ int number2= random.Next(1, 50);
 int answer;
 char operatorInput = '+';
 
+OperatorSelection();
+AnswerCalculation(number1, number2);
+
 // User selects an operator
-void operatorSelection()
+void OperatorSelection()
 {
     Console.WriteLine("Enter a number to select an operator");
     Console.WriteLine("1. Addition, 2. Subtraction, 3. Division, 4. Multiplication");
@@ -39,6 +42,25 @@ void operatorSelection()
             break;
         default:
             Console.WriteLine("Invalid input detected, reverting to default operator (addition)");
+            break;
+    }
+}
+
+void AnswerCalculation(int num1, int num2)
+{
+    switch (operatorInput)
+    {
+        case '+':
+            answer = num1 + num2;
+            break;
+        case '-':
+            answer = num1 - num2;
+            break;
+        case '/':
+            answer = num1 / num2;
+            break;
+        case '*':
+            answer = num1 * num2;
             break;
     }
 }
