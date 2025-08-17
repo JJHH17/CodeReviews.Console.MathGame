@@ -11,34 +11,43 @@ int number2;
 int answer;
 char operatorInput;
 
+int[] previousAttempts = new int[attempts + 1];
+
 // Main program loop, loops until the user reaches a score of 3
-while (score != 3)
-{
-    // Generating random numbers
-    Random random = new Random();
-    number1 = random.Next(1, 50);
-    number2 = random.Next(1, 50);
-    answer = 0;
-    operatorInput = '+';
 
-    // Selecting the operator based on user input
-    OperatorSelection();
-    // Calculating the randomly generated answer
-    AnswerCalculation(number1, number2);
-    // Printing the question for user
-    Console.WriteLine($"Question {attempts + 1}: Get the answer {answer}");
-    // Taking the number input from the user
-    int userNumber1 = NumberInput();
-    int userNumber2 = NumberInput();
-    // Checking whether the answer is correct or not, then tweaking score values
-    CheckAnswer(userNumber1, operatorInput, userNumber2);
-
-    // Add the number of attempts to an array
-}
 
 // Print user score once game ends
 Console.WriteLine("Congratulations!");
 Console.WriteLine($"You tried {attempts} times");
+
+// Main game loop
+void mainGameLoop()
+{
+    while (score != 3)
+    {
+        // Generating random numbers
+        Random random = new Random();
+        number1 = random.Next(1, 50);
+        number2 = random.Next(1, 50);
+        answer = 0;
+        operatorInput = '+';
+
+        // Selecting the operator based on user input
+        OperatorSelection();
+        // Calculating the randomly generated answer
+        AnswerCalculation(number1, number2);
+        // Printing the question for user
+        Console.WriteLine($"Question {attempts + 1}: Get the answer {answer}");
+        // Taking the number input from the user
+        int userNumber1 = NumberInput();
+        int userNumber2 = NumberInput();
+        // Checking whether the answer is correct or not, then tweaking score values
+        CheckAnswer(userNumber1, operatorInput, userNumber2);
+
+        // Add the number of attempts to an array
+        previousAttempts[attempts] = attempts;
+    }
+}
 
 // User selects an operator
 void OperatorSelection()
@@ -184,4 +193,14 @@ void IncorrectAnswerOutput()
 {
     Console.WriteLine("Incorrect Answer");
     attempts++;
+}
+
+// Allows user to view stats on previous games
+void viewPreviousGames()
+{
+    Console.WriteLine("Previous Attempt stats:");
+    for (int i = 0; i < previousAttempts.Length; i++)
+    {
+        Console.WriteLine($"Game {i + 1} {previousAttempts[i]}");
+    }
 }
