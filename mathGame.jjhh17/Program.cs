@@ -10,13 +10,18 @@ int attempts = 0;
 Random random = new Random();
 
 // Generating a calculation
-int number1 = random.Next(1, 100);
-int number2 = random.Next(1, 100);
+int number1 = random.Next(2, 75);
+int number2 = random.Next(2, 75);
 int answer;
 
 // Allowing user to enter an operator
-char operatorInput;
+char operatorInput = '+';
 OperatorSelectionInitial();
+
+// Presenting target answer to user
+Console.WriteLine();
+GetAnswer(number1, operatorInput, number2);
+
 
 void OperatorSelectionInitial()
 {
@@ -59,6 +64,30 @@ void OperatorSelectionFinal(int input)
             break;
         default:
             Console.WriteLine("Invalid input, reverting to default operator (Addition, +)");
-            break;        
+            break;
+    }
+}
+
+// Fetches target answer based on operator
+void GetAnswer(int num1, char operatorInput, int num2)
+{
+    switch (operatorInput)
+    {
+        case '+':
+            answer = num1 + num2;
+            Console.WriteLine($"Target Answer: {answer}");
+            break;
+        case '-':
+            answer = num1 - num2;
+            Console.WriteLine($"Target Answer: {answer}");
+            break;
+        case '/':
+            answer = num1 / num2;
+            Console.WriteLine($"Target Answer: {answer}");
+            break;
+        case '*':
+            answer = num1 * num2;
+            Console.WriteLine($"Target Answer: {answer}");
+            break;
     }
 }
