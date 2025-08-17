@@ -1,8 +1,11 @@
-﻿/*
-Step 1: Welcome the user
-Step 2: Provide instructions 
-Step 3: Generate a random number and use the operator to find a given answer
+﻿/* 
+
+if number 1 and number 2 operate to the answer, increase 1 to the score and keep loop running
+
+if the answer if wrong, end the loop and print their score
+
 */
+
 
 PrintIntro();
 
@@ -22,19 +25,27 @@ while (true)
 
     // Generating an answer
     Console.WriteLine("Answer:");
-    int answer = number1 + OperatorInput() + number2;
+    char operatorSelection = OperatorInput();
+    int answer = number1 + operatorSelection + number2;
     Console.WriteLine(answer);
 
     Console.WriteLine("What is number 1?");
-    int number1Input = Console.Read();
+    int number1Input = Convert.ToInt32(Console.ReadLine());
     Console.WriteLine("What is number 2?");
-    int number2Input = Console.Read();
+    int number2Input = Convert.ToInt32(Console.ReadLine());
 
+    if (number1Input + operatorSelection + number2Input == answer)
+    {
+        Console.WriteLine("You win!");
+        score++;
+    }
+    else
+    {
+        Console.WriteLine("You lose!");
+        Console.WriteLine($"You scored {score}");
+        break;
+    }
 }
-
-// Take operator from user
-
-
 
 // Method used to print instructions to user
 void PrintIntro()
@@ -49,7 +60,7 @@ char OperatorInput()
 {
     Console.WriteLine("Select an operator");
     Console.WriteLine("1. + Addition, 2. - Subtraction, 3. * Multiplication, 4. / Division");
-    int operatorSelection = Console.Read();
+    int operatorSelection = Convert.ToInt32(Console.ReadLine());
     char output = '+';
 
     switch (operatorSelection)
@@ -72,3 +83,5 @@ char OperatorInput()
     }
     return output;
 }
+
+// Determinds if game was won or not
