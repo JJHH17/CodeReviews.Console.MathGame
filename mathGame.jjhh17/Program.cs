@@ -1,5 +1,5 @@
-﻿﻿Console.WriteLine("Welcome to MathGame!");
-Console.WriteLine("We will present a calculation based on an operator that you enter, answer 3 questions correctly to win!");
+﻿Console.WriteLine("Welcome to MathGame!");
+Console.WriteLine("Enter an operator and answer the given question!");
 Console.WriteLine("Get all 3 questions right to win!");
 
 // Score counter, if it reaches 3 they win
@@ -9,33 +9,35 @@ int games = 0;
 
 // Generating random numbers
 Random random = new Random();
-
-// Generating a calculation
-int number1 = random.Next(2, 75);
-int number2 = random.Next(2, 75);
+int number1;
+int number2;
 int answer;
-char operatorInput;
 
-// Allowing user to enter an operator
+// This is where user input will be stored and collected
+int number1Int;
+int number2Int;
 
-// Presenting target answer to user
-Console.WriteLine();
-
-
-void OperatorSelectionInitial()
+// Main program loop
+while (score != 3)
 {
-    Console.WriteLine("Enter an Operator");
-    Console.WriteLine("1. + Addition, 2. - Subtraction, 3. / Division, 4. * Multiplication");
+    number1 = random.Next(0, 30);
+    number2 = random.Next(0, 30);
 
-    string operatorStringInput;
-    int operatorIntInput;
+    // Collecting the operator input and generating the answer
+    char operatorSelection = OperatorInput();
+    answer = number1 + operatorSelection + number2;
+    Console.WriteLine($"Answer: {answer}");
 
-    while (true)
+    Console.WriteLine("Enter number 1");
+    SetNumber1();
+
+    Console.WriteLine("Enter number 2");
+    SetNumer2();
+
+    switch (operatorSelection)
     {
-        operatorStringInput = Console.ReadLine();
-        if (int.TryParse(operatorStringInput, out operatorIntInput))
-        {
-            OperatorSelectionFinal(operatorIntInput);
+        case '+':
+            AdditionResult(number1Int, number2Int);
             break;
         }
         else
