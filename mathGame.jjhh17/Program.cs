@@ -5,25 +5,49 @@ Console.WriteLine("Get all 3 questions right to win!");
 // Score counter, if it reaches 3 they win
 int score = 0;
 int attempts = 0;
+int games = 0;
 
 int number1;
 int number2;
 int answer;
 char operatorInput;
+int[] previousAttempts = new int[games + 1];
 
-int[] previousAttempts = new int[attempts + 1];
+bool active = true;
 
-// Main program loop, loops until the user reaches a score of 3
+// Main menu
+while (active)
+{
+    Console.WriteLine("\nEnter an option");
+    Console.WriteLine("'New' starts a new game, 'Print' prints previous game attempts, 'Quit' exits the application");
+    string selection = Console.ReadLine().Trim().ToLower();
 
+    switch (selection)
+    {
+        case "new":
+            MainGameLoop();
+            break;
 
-// Print user score once game ends
-Console.WriteLine("Congratulations!");
-Console.WriteLine($"You tried {attempts} times");
+        case "print":
+            ViewPreviousGames();
+            break;
+
+        case "quit":
+            active = false;
+            break;
+
+        default:
+            Console.WriteLine("Please enter a valid input");
+            break;
+    }
+}
 
 // Main game loop
-void mainGameLoop()
+void MainGameLoop()
 {
-    while (score != 3)
+    int score = 0;
+
+    while (score < 3)
     {
         // Generating random numbers
         Random random = new Random();
@@ -45,8 +69,16 @@ void mainGameLoop()
         CheckAnswer(userNumber1, operatorInput, userNumber2);
 
         // Add the number of attempts to an array
-        previousAttempts[attempts] = attempts;
+        previousAttempts[games] = attempts;
+        Array.Resize(ref previousAttempts, 1);
+
     }
+    // Print user score once game ends
+    Console.WriteLine("Congratulations!");
+    Console.WriteLine($"You tried {attempts} times");
+    
+    // Resetting score variable
+    score = 0;
 }
 
 // User selects an operator
@@ -196,11 +228,11 @@ void IncorrectAnswerOutput()
 }
 
 // Allows user to view stats on previous games
-void viewPreviousGames()
+void ViewPreviousGames()
 {
     Console.WriteLine("Previous Attempt stats:");
     for (int i = 0; i < previousAttempts.Length; i++)
     {
-        Console.WriteLine($"Game {i + 1} {previousAttempts[i]}");
+        Console.WriteLine($"\nGame {i + 1}: {previousAttempts[i]} attempts");
     }
 }
