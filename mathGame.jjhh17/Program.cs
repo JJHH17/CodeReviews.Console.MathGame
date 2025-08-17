@@ -7,64 +7,50 @@ int score = 0;
 
 // Generating random numbers
 Random random = new Random();
-int number1 = random.Next(0, 30);
-int number2 = random.Next(0, 30);
+int number1;
+int number2;
+int answer;
 
-// Collecting the operator input and generating the answer
-char operatorSelection = OperatorInput();
-int answer = number1 + operatorSelection + number2;
-Console.WriteLine($"Answer: {answer}");
-
-Console.WriteLine("Enter number 1");
 int number1Int;
-
-while (true)
-{
-    string number1Input = Console.ReadLine();
-    if (int.TryParse(number1Input, out number1Int))
-    {
-        break;
-    }
-    else
-    {
-        Console.WriteLine("Please enter a valid number");
-    }
-}
-
-Console.WriteLine("Enter number 2");
 int number2Int;
 
-while (true)
+// Main program loop
+while (score != 3)
 {
-    string number2Input = Console.ReadLine();
-    if (int.TryParse(number2Input, out number2Int))
+    number1 = random.Next(0, 30);
+    number2 = random.Next(0, 30);
+
+    // Collecting the operator input and generating the answer
+    char operatorSelection = OperatorInput();
+    answer = number1 + operatorSelection + number2;
+    Console.WriteLine($"Answer: {answer}");
+
+    Console.WriteLine("Enter number 1");
+    SetNumber1();
+
+    Console.WriteLine("Enter number 2");
+    SetNumer2();
+
+    switch (operatorSelection)
     {
-        break;
-    }
-    else
-    {
-        Console.WriteLine("Please enter a valid number");
+        case '+':
+            AdditionResult(number1Int, number2Int);
+            break;
+
+        case '-':
+            SubtractionResult(number1Int, number2Int);
+            break;
+
+        case '/':
+            DivisionResult(number1Int, number2Int);
+            break;
+
+        case '*':
+            MultiplicationResult(number1Int, number2Int);
+            break;
     }
 }
 
-switch (operatorSelection)
-{
-    case '+':
-        AdditionResult(number1Int, number2Int);
-        break;
-
-    case '-':
-        SubtractionResult(number1Int, number2Int);
-        break;
-
-    case '/':
-        DivisionResult(number1Int, number2Int);
-        break;
-
-    case '*':
-        MultiplicationResult(number1Int, number2Int);
-        break;    
-}
 
 // Allowing user to select an operator
 char OperatorInput()
@@ -100,13 +86,12 @@ void AdditionResult(int num1, int num2)
 {
     if (num1 + num2 == answer)
     {
-        Console.WriteLine("You Win!");
+        Console.WriteLine("Correct!");
         score++;
     }
     else
     {
-        Console.WriteLine("You Lose");
-        Console.WriteLine($"You scored {score}");
+        Console.WriteLine("Incorrect!");
     }
 }
 
@@ -115,13 +100,12 @@ void SubtractionResult(int num1, int num2)
 {
     if (num1 - num2 == answer)
     {
-        Console.WriteLine("You Win!");
+        Console.WriteLine("Correct!");
         score++;
     }
     else
     {
-        Console.WriteLine("You Lose");
-        Console.WriteLine($"You scored {score}");
+        Console.WriteLine("Incorrect!");
     }
 }
 
@@ -140,7 +124,6 @@ void DivisionResult(int num1, int num2)
     else
     {
         Console.WriteLine("You Lose");
-        Console.WriteLine($"You scored {score}");
     }
 }
 
@@ -155,6 +138,36 @@ void MultiplicationResult(int num1, int num2)
     else
     {
         Console.WriteLine("You Lose");
-        Console.WriteLine($"You scored {score}");
+    }
+}
+
+void SetNumber1()
+{
+    while (true)
+    {
+        string number1Input = Console.ReadLine();
+        if (int.TryParse(number1Input, out number1Int))
+        {
+            break;
+        }
+        else
+        {
+            Console.WriteLine("Please enter a valid number");
+        }
+    }
+}
+
+void SetNumer2() {
+    while (true)
+    {
+        string number2Input = Console.ReadLine();
+        if (int.TryParse(number2Input, out number2Int))
+        {
+            break;
+        }
+        else
+        {
+            Console.WriteLine("Please enter a valid number");
+        }
     }
 }
