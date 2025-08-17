@@ -10,7 +10,7 @@ int attempts = 0;
 Random random = new Random();
 int number1 = random.Next(1, 50);
 int number2 = random.Next(1, 50);
-int answer;
+int answer = 0;
 char operatorInput = '+';
 
 // Selecting the operator based on user input
@@ -18,10 +18,11 @@ OperatorSelection();
 // Calculating the randomly generated answer
 AnswerCalculation(number1, number2);
 // Printing the question for user
-Console.WriteLine($"Question {attempts + 1}: {number1} {operatorInput} {number2}");
+Console.WriteLine($"Question {attempts + 1}: Get the answer {answer}");
 // Taking the number input from the user
-int userNumber1 = numberInput();
-int userNumber2 = numberInput();
+int userNumber1 = NumberInput();
+int userNumber2 = NumberInput();
+// Checking whether the answer is correct or not, then tweaking score values
 
 // User selects an operator
 void OperatorSelection()
@@ -30,6 +31,7 @@ void OperatorSelection()
     Console.WriteLine("1. Addition, 2. Subtraction, 3. Division, 4. Multiplication");
     int operatorInt;
 
+    // Ensuring user enters a valid integer value
     while (true)
     {
         string operatorString = Console.ReadLine();
@@ -43,6 +45,7 @@ void OperatorSelection()
         }
     }
 
+    // Checking the operator input
     switch (operatorInt)
     {
         case 1:
@@ -63,6 +66,7 @@ void OperatorSelection()
     }
 }
 
+// Calculating the generated answer based on the operator entered by the user
 void AnswerCalculation(int num1, int num2)
 {
     switch (operatorInput)
@@ -82,7 +86,8 @@ void AnswerCalculation(int num1, int num2)
     }
 }
 
-int numberInput()
+// Allowing the user to enter numbers for their answer
+int NumberInput()
 {
     Console.WriteLine("Enter a number");
     int numberInt;
@@ -99,4 +104,68 @@ int numberInput()
             Console.WriteLine("Invalid number, please try again");
         }
     }
+}
+
+// Checking whether the inputted answer matches the targer number, increments score and attempt values
+void CheckAnswer(int num1, char operatorSelection, int num2)
+{
+    switch (operatorSelection)
+    {
+        case '+':
+            if (num1 + num2 == answer)
+            {
+                CorrectAnswerOutput();
+            }
+            else
+            {
+                IncorrectAnswerOutput();
+            }
+            break;
+
+        case '-':
+            if ((num1 - num2) == answer)
+            {
+                CorrectAnswerOutput();
+            }
+            else
+            {
+                IncorrectAnswerOutput();
+            }
+            break;
+
+        case '/':
+            if ((num1 / num2) == answer)
+            {
+                CorrectAnswerOutput();
+            }
+            else
+            {
+                IncorrectAnswerOutput();
+            }
+            break;
+
+        case '*':
+            if ((num1 * num2) == answer)
+            {
+                CorrectAnswerOutput();
+            }
+            else
+            {
+                IncorrectAnswerOutput();
+            }
+            break;
+    }
+}
+
+void CorrectAnswerOutput()
+{
+    Console.WriteLine("Correct Answer");
+    score++;
+    attempts++;
+}
+
+void IncorrectAnswerOutput()
+{
+    Console.WriteLine("Incorrect Answer");
+    attempts++;
 }
