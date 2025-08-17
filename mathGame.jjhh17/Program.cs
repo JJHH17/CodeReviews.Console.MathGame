@@ -8,178 +8,37 @@ int attempts = 0;
 
 // Generating random numbers
 Random random = new Random();
-int number1;
-int number2;
+int number1 = random.Next(1, 50);
+int number2= random.Next(1, 50);
 int answer;
+char operatorInput = '+';
 
-// This is where user input will be stored and collected
-int number1Int;
-int number2Int;
-
-// Main program loop
-while (score != 3)
+// User selects an operator
+void operatorSelection()
 {
-    number1 = random.Next(0, 30);
-    number2 = random.Next(0, 30);
+    Console.WriteLine("Enter a number to select an operator");
+    Console.WriteLine("1. Addition, 2. Subtraction, 3. Division, 4. Multiplication");
+    string operatorString = Console.ReadLine();
+    int operatorInt;
 
-    // Collecting the operator input and generating the answer
-    char operatorSelection = OperatorInput();
-    answer = number1 + operatorSelection + number2;
-    Console.WriteLine($"Answer: {answer}");
+    int.TryParse(operatorString, out operatorInt);
 
-    Console.WriteLine("Enter number 1");
-    SetNumber1();
-
-    Console.WriteLine("Enter number 2");
-    SetNumer2();
-
-    switch (operatorSelection)
-    {
-        case '+':
-            AdditionResult(number1Int, number2Int);
-            break;
-
-        case '-':
-            SubtractionResult(number1Int, number2Int);
-            break;
-
-        case '/':
-            DivisionResult(number1Int, number2Int);
-            break;
-
-        case '*':
-            MultiplicationResult(number1Int, number2Int);
-            break;
-    }
-}
-
-Console.WriteLine("You reached a score of 3 points, well done!");
-Console.WriteLine($"You had {attempts} attempts");
-
-// Allowing user to select an operator
-char OperatorInput()
-{
-    Console.WriteLine("Select an operator");
-    Console.WriteLine("1. + Addition, 2. - Subtraction, 3. * Multiplication, 4. / Division");
-    int operatorSelection = Convert.ToInt32(Console.ReadLine());
-    char output = '+';
-
-    switch (operatorSelection)
+    switch (operatorInt)
     {
         case 1:
-            output = '+';
+            operatorInput = '+';
             break;
         case 2:
-            output = '-';
+            operatorInput = '-';
             break;
         case 3:
-            output = '*';
+            operatorInput = '/';
             break;
         case 4:
-            output = '/';
+            operatorInput = '*';
             break;
         default:
-            Console.WriteLine("Invalid input, please try again");
+            Console.WriteLine("Invalid input detected, reverting to default operator (addition)");
             break;
-    }
-    return output;
-}
-
-// Addition method
-void AdditionResult(int num1, int num2)
-{
-    if (num1 + num2 == answer)
-    {
-        Console.WriteLine("Correct!");
-        score++;
-        attempts++;
-    }
-    else
-    {
-        Console.WriteLine("Incorrect!");
-        attempts++;
-    }
-}
-
-// Subtractionn method
-void SubtractionResult(int num1, int num2)
-{
-    if (num1 - num2 == answer)
-    {
-        Console.WriteLine("Correct!");
-        score++;
-        attempts++;
-    }
-    else
-    {
-        Console.WriteLine("Incorrect!");
-        attempts++;
-    }
-}
-
-// Division method (handles zero division)
-void DivisionResult(int num1, int num2)
-{
-    if (num1 <= 0 || num2 <= 0)
-    {
-        Console.WriteLine("You cannot divide by zero or less");
-    }
-    else if (num1 / num2 == answer)
-    {
-        Console.WriteLine("You Win!");
-        score++;
-        attempts++;
-    }
-    else
-    {
-        Console.WriteLine("You Lose");
-        attempts++;
-    }
-}
-
-// Multiplication method
-void MultiplicationResult(int num1, int num2)
-{
-    if (num1 * num2 == answer)
-    {
-        Console.WriteLine("You Win!");
-        score++;
-        attempts++;
-    }
-    else
-    {
-        Console.WriteLine("You Lose");
-        attempts++;
-    }
-}
-
-void SetNumber1()
-{
-    while (true)
-    {
-        string number1Input = Console.ReadLine();
-        if (int.TryParse(number1Input, out number1Int))
-        {
-            break;
-        }
-        else
-        {
-            Console.WriteLine("Please enter a valid number");
-        }
-    }
-}
-
-void SetNumer2() {
-    while (true)
-    {
-        string number2Input = Console.ReadLine();
-        if (int.TryParse(number2Input, out number2Int))
-        {
-            break;
-        }
-        else
-        {
-            Console.WriteLine("Please enter a valid number");
-        }
     }
 }
