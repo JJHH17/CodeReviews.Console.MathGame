@@ -6,23 +6,39 @@ Console.WriteLine("Get all 3 questions right to win!");
 int score = 0;
 int attempts = 0;
 
-// Generating random numbers
-Random random = new Random();
-int number1 = random.Next(1, 50);
-int number2 = random.Next(1, 50);
-int answer = 0;
-char operatorInput = '+';
+int number1;
+int number2;
+int answer;
+char operatorInput;
 
-// Selecting the operator based on user input
-OperatorSelection();
-// Calculating the randomly generated answer
-AnswerCalculation(number1, number2);
-// Printing the question for user
-Console.WriteLine($"Question {attempts + 1}: Get the answer {answer}");
-// Taking the number input from the user
-int userNumber1 = NumberInput();
-int userNumber2 = NumberInput();
-// Checking whether the answer is correct or not, then tweaking score values
+// Main program loop, loops until the user reaches a score of 3
+while (score != 3)
+{
+    // Generating random numbers
+    Random random = new Random();
+    number1 = random.Next(1, 50);
+    number2 = random.Next(1, 50);
+    answer = 0;
+    operatorInput = '+';
+
+    // Selecting the operator based on user input
+    OperatorSelection();
+    // Calculating the randomly generated answer
+    AnswerCalculation(number1, number2);
+    // Printing the question for user
+    Console.WriteLine($"Question {attempts + 1}: Get the answer {answer}");
+    // Taking the number input from the user
+    int userNumber1 = NumberInput();
+    int userNumber2 = NumberInput();
+    // Checking whether the answer is correct or not, then tweaking score values
+    CheckAnswer(userNumber1, operatorInput, userNumber2);
+
+    // Add the number of attempts to an array
+}
+
+// Print user score once game ends
+Console.WriteLine("Congratulations!");
+Console.WriteLine($"You tried {attempts} times");
 
 // User selects an operator
 void OperatorSelection()
