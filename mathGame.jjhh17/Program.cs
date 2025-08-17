@@ -56,6 +56,10 @@ switch (operatorSelection)
     case '-':
         SubtractionResult(number1Int, number2Int);
         break;
+
+    case '/':
+        DivisionResult(number1Int, number2Int);
+        break;
 }
 
 // Allowing user to select an operator
@@ -117,6 +121,23 @@ void SubtractionResult(int num1, int num2)
     }
 }
 
-// Division method
+// Division method (handles zero division)
+void DivisionResult(int num1, int num2)
+{
+    if (num1 <= 0 || num2 <= 0)
+    {
+        Console.WriteLine("You cannot divide by zero or less");
+    }
+    else if (num1 / num2 == answer)
+    {
+        Console.WriteLine("You Win!");
+        score++;
+    }
+    else
+    {
+        Console.WriteLine("You Lose");
+        Console.WriteLine($"You scored {score}");
+    }
+}
 
 // Multiplication method
