@@ -4,6 +4,7 @@ Console.WriteLine("Get all 3 questions right to win!");
 
 // Score counter, if it reaches 3 they win
 int score = 0;
+int attempts = 0;
 
 // Generating random numbers
 Random random = new Random();
@@ -11,6 +12,7 @@ int number1;
 int number2;
 int answer;
 
+// This is where user input will be stored and collected
 int number1Int;
 int number2Int;
 
@@ -51,6 +53,8 @@ while (score != 3)
     }
 }
 
+Console.WriteLine("You reached a score of 3 points, well done!");
+Console.WriteLine($"You had {attempts} attempts");
 
 // Allowing user to select an operator
 char OperatorInput()
@@ -88,10 +92,12 @@ void AdditionResult(int num1, int num2)
     {
         Console.WriteLine("Correct!");
         score++;
+        attempts++;
     }
     else
     {
         Console.WriteLine("Incorrect!");
+        attempts++;
     }
 }
 
@@ -102,10 +108,12 @@ void SubtractionResult(int num1, int num2)
     {
         Console.WriteLine("Correct!");
         score++;
+        attempts++;
     }
     else
     {
         Console.WriteLine("Incorrect!");
+        attempts++;
     }
 }
 
@@ -120,10 +128,12 @@ void DivisionResult(int num1, int num2)
     {
         Console.WriteLine("You Win!");
         score++;
+        attempts++;
     }
     else
     {
         Console.WriteLine("You Lose");
+        attempts++;
     }
 }
 
@@ -134,10 +144,12 @@ void MultiplicationResult(int num1, int num2)
     {
         Console.WriteLine("You Win!");
         score++;
+        attempts++;
     }
     else
     {
         Console.WriteLine("You Lose");
+        attempts++;
     }
 }
 
