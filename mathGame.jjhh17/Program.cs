@@ -1,241 +1,42 @@
-﻿
-Console.WriteLine("Welcome to MathGame!");
-Console.WriteLine("Enter an operator and answer the given question!");
-Console.WriteLine("Get all 3 questions right to win!");
+﻿// prompt for a operator
 
-// Score counter, if it reaches 3 they win
-int score = 0;
-int attempts = 0;
-int games = 0;
+// Generate 2 random numbers
 
-// Generating random numbers
-Random random = new Random();
-int number1 = 0;
-int number2 = 0;
-int answer;
-char operatorInput = '+';
+// Generate an answer
 
-bool active = true;
-int[] previousGames = new int[games + 1];
+// prompt user for answer
 
-// Main program loop
-while (active)
+// Increment score
+
+// Add score to array
+
+// Loop game
+
+// Allow user to print game results
+
+// Hard difficulty, calulates 4 numbers
+
+Console.WriteLine("Welcome to Math Game!");
+Console.WriteLine("Enter an operator and we will give you a math question");
+
+Console.WriteLine("1. Addition +, 2. Subtraction -, 3. Division /, 4. Multiplication *");
+
+// Selecting the operator via number input
+string operatorInputString;
+int operatorInputInt;
+while (true)
 {
-    Console.WriteLine("Select an option: 'New' to play a new game, 'Print' to print previous games, 'quit' to quit");
-    string userInput = Console.ReadLine().Trim().ToLower();
-
-    if (userInput == "new")
+    operatorInputString = Console.ReadLine();
+    if (int.TryParse(operatorInputString, out operatorInputInt) && operatorInputInt > 0 && operatorInputInt < 5)
     {
-        while (score != 3)
-        {
-            PlayGame();
-        }
-        Console.WriteLine($"You completed the game in {attempts} attempts");
-        previousGames[games] = attempts;
-        games++;
-        Array.Resize<int>(ref previousGames, games + 1);
-        attempts = 0;
+        break;
     }
-    else if (userInput == "print")
+    else
     {
-        for (int i = 0; i < previousGames.Length; i++)
-        {
-            Console.WriteLine($"Game {i + 1}: {previousGames[i]} attempts");
-        }
+        Console.WriteLine("Please enter a valid input");
     }
 }
 
-void PlayGame()
-{
-    number1 = random.Next(1, 50);
-    number2 = random.Next(1, 50);
+// Parsing the input into a operator char
+char operatorSelection = '+';
 
-    SelectOperator();
-    GetAnswer(number1, number2);
-    int userAnswer = GetUserAnswer();
-    checkAnswer(userAnswer);
-}
-
-// Allows user to select operator
-void SelectOperator()
-{
-    Console.WriteLine("Enter the operator you wish to use.");
-    Console.WriteLine("1. + Addition, 2. - Subtraction, 3. / Division, 4. * Multiplication");
-    int operatorInt;
-    bool active = true;
-
-    while (active)
-    {
-        string operatorString = Console.ReadLine();
-
-        if (int.TryParse(operatorString, out operatorInt))
-        {
-            switch (operatorInt)
-            {
-                case 1:
-                    OperatorSelectionFinal(1);
-                    active = false;
-                    break;
-                case 2:
-                    OperatorSelectionFinal(2);
-                    active = false;
-                    break;
-                case 3:
-                    OperatorSelectionFinal(3);
-                    active = false;
-                    break;
-                case 4:
-                    OperatorSelectionFinal(4);
-                    active = false;
-                    break;
-                default:
-                    Console.WriteLine("Unsupported value detected, reverting to default value (addition)");
-                    active = false;
-                    OperatorSelectionFinal(1);
-                    break;
-            }
-        }
-        else
-        {
-            Console.WriteLine("Please enter a valid option");
-        }
-    }
-}
-
-void OperatorSelectionFinal(int input)
-{
-    switch (input)
-    {
-        case 1:
-            operatorInput = '+';
-            break;
-        case 2:
-            operatorInput = '-';
-            break;
-        case 3:
-            operatorInput = '/';
-            break;
-        case 4:
-            operatorInput = '*';
-            break;
-        default:
-            Console.WriteLine("Invalid input, reverting to default operator (Addition, +)");
-            break;
-    }
-}
-
-// Fetches target answer based on operator
-void GetAnswer(int num1, int num2)
-{
-    switch (operatorInput)
-    {
-        case '+':
-            answer = num1 + num2;
-            Console.WriteLine($"What is: {num1} + {num2}?");
-            break;
-        case '-':
-            answer = num1 - num2;
-            Console.WriteLine($"What is: {num1} - {num2}");
-            break;
-        case '/':
-            if (num1 > num2)
-            {
-                answer = num1 / num2;
-                Console.WriteLine($"What is {num1} / {num2}?");
-            }
-            else
-            {
-                answer = num2 / num1;
-                Console.WriteLine($"What is {num2} / {num1}");
-            }
-            break;
-        case '*':
-            answer = num1 * num2;
-            Console.WriteLine($"What is {num1} * {num2}?");
-            break;
-    }
-}
-
-void checkAnswer(int number)
-{
-    switch (operatorInput)
-    {
-        case '+':
-            if (number1 + number2 == number)
-            {
-                CorrectAnswer();
-            }
-            else
-            {
-                IncorrectAnswer();
-            }
-            break;
-        case '-':
-            if (number1 - number2 == number)
-            {
-                CorrectAnswer();
-            }
-            else
-            {
-                IncorrectAnswer();
-            }
-            break;
-        case '/':
-            if (number1 > number2 && number1 / number2 == number)
-            {
-                CorrectAnswer();
-            }
-            else if (number2 > number1 && number2 / number1 == number)
-            {
-                CorrectAnswer();
-            }
-            else
-            {
-                IncorrectAnswer();
-            }
-            break;
-        case '*':
-            if (number1 * number2 == number)
-            {
-                CorrectAnswer();
-            }
-            else
-            {
-                IncorrectAnswer();
-            }
-            break;
-    }
-}
-
-void CorrectAnswer()
-{
-    Console.WriteLine("Correct Answer!");
-    score++;
-    attempts++;
-}
-
-void IncorrectAnswer()
-{
-    Console.WriteLine("Incorrect Answer");
-    attempts++;
-}
-
-int GetUserAnswer()
-{
-    Console.WriteLine("Enter your answer");
-    int intAnswer;
-
-    while (true)
-    {
-        string stringAnswer = Console.ReadLine();
-        if (int.TryParse(stringAnswer, out intAnswer))
-        {
-            break;
-        }
-        else
-        {
-            Console.WriteLine("Please enter a valid number");
-        }
-    }
-    return intAnswer;
-}
