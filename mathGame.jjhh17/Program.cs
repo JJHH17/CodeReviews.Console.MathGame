@@ -1,12 +1,4 @@
-﻿/*
-
-TODO:
-- Present the user with 2 integers
-- They need to enter the sum of those two ints
-
-*/
-
-
+﻿
 Console.WriteLine("Welcome to MathGame!");
 Console.WriteLine("Enter an operator and answer the given question!");
 Console.WriteLine("Get all 3 questions right to win!");
@@ -27,9 +19,27 @@ char operatorInput = '+';
 int number1Int;
 int number2Int;
 
+bool active = true;
+int[] previousGames = new int[games + 1];
+
 // Main program loop
-SelectOperator();
-GetAnswer(number1, operatorInput, number2);
+// while (active)
+// {
+//     Console.WriteLine("Select an option: 'New' to play a new game, 'Print' to print previous games, 'quit' to quit");
+//     string userInput = Console.ReadLine();
+
+
+// }
+
+PlayGame();
+
+void PlayGame()
+{
+    SelectOperator();
+    GetAnswer(number1, number2);
+    int userAnswer = GetUserAnswer();
+    checkAnswer(userAnswer);
+}
 
 // Allows user to select operator
 void SelectOperator()
@@ -100,7 +110,7 @@ void OperatorSelectionFinal(int input)
 }
 
 // Fetches target answer based on operator
-void GetAnswer(int num1, char operatorInput, int num2)
+void GetAnswer(int num1, int num2)
 {
     switch (operatorInput)
     {
@@ -131,3 +141,86 @@ void GetAnswer(int num1, char operatorInput, int num2)
     }
 }
 
+void checkAnswer(int number)
+{
+    switch (operatorInput)
+    {
+        case '+':
+            if (number1 + number2 == number)
+            {
+                CorrectAnswer();
+            }
+            else
+            {
+                IncorrectAnswer();
+            }
+            break;
+        case '-':
+            if (number1 - number2 == number)
+            {
+                CorrectAnswer();
+            }
+            else
+            {
+                IncorrectAnswer();
+            }
+            break;
+        case '/':
+            if (number1 > number2 && number1 / number2 == number)
+            {
+                CorrectAnswer();
+            }
+            else if (number2 > number1 && number2 / number1 == number)
+            {
+                CorrectAnswer();
+            }
+            else
+            {
+                IncorrectAnswer();
+            }
+            break;
+        case '*':
+            if (number1 * number2 == number)
+            {
+                CorrectAnswer();
+            }
+            else
+            {
+                IncorrectAnswer();
+            }
+            break;
+    }
+}
+
+void CorrectAnswer()
+{
+    Console.WriteLine("Correct Answer!");
+    score++;
+    attempts++;
+}
+
+void IncorrectAnswer()
+{
+    Console.WriteLine("Incorrect Answer");
+    attempts++;
+}
+
+int GetUserAnswer()
+{
+    Console.WriteLine("Enter your answer");
+    int intAnswer;
+
+    while (true)
+    {
+        string stringAnswer = Console.ReadLine();
+        if (int.TryParse(stringAnswer, out intAnswer))
+        {
+            break;
+        }
+        else
+        {
+            Console.WriteLine("Please enter a valid number");
+        }
+    }
+    return intAnswer;
+}
