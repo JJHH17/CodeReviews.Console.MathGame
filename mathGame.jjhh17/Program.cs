@@ -106,27 +106,28 @@ void GetAnswer(int num1, char operatorInput, int num2)
     {
         case '+':
             answer = num1 + num2;
-            Console.WriteLine($"Target Answer: {answer}");
+            Console.WriteLine($"What is: {num1} + {num2}?");
             break;
         case '-':
             answer = num1 - num2;
-            Console.WriteLine($"Target Answer: {answer}");
+            Console.WriteLine($"What is: {num1} - {num2}");
             break;
         case '/':
             if (num1 > num2)
             {
                 answer = num1 / num2;
+                Console.WriteLine($"What is {num1} / {num2}?");
             }
             else
             {
                 answer = num2 / num1;
-
+                Console.WriteLine($"What is {num2} / {num1}");
             }
-            Console.WriteLine($"Target Answer: {answer}");
             break;
         case '*':
             answer = num1 * num2;
-            Console.WriteLine($"Target Answer: {answer}");
+            Console.WriteLine($"What is {num1} * {num2}?");
             break;
     }
 }
+
