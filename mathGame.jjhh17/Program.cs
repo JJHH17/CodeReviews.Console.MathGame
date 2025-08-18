@@ -1,6 +1,4 @@
-﻿// prompt for a operator
-
-// Generate 2 random numbers
+﻿// Generate 2 random numbers
 
 // Generate an answer
 
@@ -37,6 +35,31 @@ while (true)
     }
 }
 
-// Parsing the input into a operator char
-char operatorSelection = '+';
+// Generate 2 random numbers that we will do our calculation with
+Random random = new Random();
+int number1 = random.Next(1, 50);
+int number2 = random.Next(1, 50);
+int answer;
 
+// Generate an answer, based on the operator input
+switch (operatorInputInt)
+{
+    case 1:
+        answer = number1 + number2;
+        Console.WriteLine($"What is {number1} + {number2}?");
+        break;
+    case 2:
+        answer = number1 - number2;
+        Console.WriteLine($"What is {number1} - {number2}?");
+        break;
+    case 3:
+        answer = number1 / number2;
+        Console.WriteLine($"What is {number1} / {number2}?");
+        break;
+    case 4:
+        answer = number1 * number2;
+        Console.WriteLine($"What is {number1} * {number2}?");
+        break;
+}
+
+// Printing the result
