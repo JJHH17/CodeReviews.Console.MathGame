@@ -1,4 +1,4 @@
-﻿// Implement a loop to game, runs until user reaches a score of 3 
+﻿// Allow the user to print their scores
 
 
 Console.WriteLine("Welcome to Math Game!");
@@ -9,7 +9,42 @@ int score = 0;
 int games = 1;
 // Array to contain scores
 int[] scoreArray = new int[games];
+bool menuLoop = true;
 
+// Main menu
+while (menuLoop)
+{
+    Console.WriteLine("Select an option");
+    Console.WriteLine("'New' to play new game, 'Print' to print scores, 'Quit' to exit");
+    string userChoice = Console.ReadLine();
+    // Resets score for a new game
+    score = 0;
+
+    switch (userChoice)
+    {
+        case "new":
+            GameLoop();
+            break;
+        case "print":
+            Console.WriteLine("Coming soon!");
+            break;
+        case "quit":
+            menuLoop = false;
+            break;
+        default:
+            Console.WriteLine("Please enter a valid input");
+            break;
+    }
+}
+
+// Adds score to array
+scoreArray[games - 1] = score;
+// Increments quantity of games
+games++;
+// Resizes array
+Array.Resize(ref scoreArray, games + 1);
+
+// Main game loop
 void GameLoop()
 {
     while (score != 3)
@@ -100,14 +135,3 @@ void GameLoop()
         }
     }
 }
-
-
-
-// Adds score to array
-scoreArray[games - 1] = score;
-// Increments quantity of games
-games++;
-// Resizes array
-Array.Resize(ref scoreArray, games + 1);
-// Resets score 
-score = 0;
