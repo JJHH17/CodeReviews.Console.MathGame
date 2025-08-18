@@ -10,31 +10,46 @@ int games = 0;
 
 // Generating random numbers
 Random random = new Random();
-int number1 = random.Next(1, 50);
-int number2 = random.Next(1, 50);
+int number1 = 0;
+int number2 = 0;
 int answer;
 char operatorInput = '+';
-
-// This is where user input will be stored and collected
-int number1Int;
-int number2Int;
 
 bool active = true;
 int[] previousGames = new int[games + 1];
 
 // Main program loop
-// while (active)
-// {
-//     Console.WriteLine("Select an option: 'New' to play a new game, 'Print' to print previous games, 'quit' to quit");
-//     string userInput = Console.ReadLine();
+while (active)
+{
+    Console.WriteLine("Select an option: 'New' to play a new game, 'Print' to print previous games, 'quit' to quit");
+    string userInput = Console.ReadLine().Trim().ToLower();
 
-
-// }
-
-PlayGame();
+    if (userInput == "new")
+    {
+        while (score != 3)
+        {
+            PlayGame();
+        }
+        Console.WriteLine($"You completed the game in {attempts} attempts");
+        previousGames[games] = attempts;
+        games++;
+        Array.Resize<int>(ref previousGames, games + 1);
+        attempts = 0;
+    }
+    else if (userInput == "print")
+    {
+        for (int i = 0; i < previousGames.Length; i++)
+        {
+            Console.WriteLine($"Game {i + 1}: {previousGames[i]} attempts");
+        }
+    }
+}
 
 void PlayGame()
 {
+    number1 = random.Next(1, 50);
+    number2 = random.Next(1, 50);
+
     SelectOperator();
     GetAnswer(number1, number2);
     int userAnswer = GetUserAnswer();
