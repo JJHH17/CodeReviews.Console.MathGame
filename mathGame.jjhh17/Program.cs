@@ -1,5 +1,6 @@
-﻿Console.WriteLine("Welcome to Math Game!");
+﻿Console.WriteLine("\nWelcome to Math Game!");
 Console.WriteLine("Enter an operator and we will give you a math question");
+Console.WriteLine("Score up to 3 points to win!\n");
 
 // Implementing score variable
 int score = 0;
@@ -13,7 +14,7 @@ bool menuLoop = true;
 while (menuLoop)
 {
     Console.WriteLine("Select an option");
-    Console.WriteLine("'New' to play new game, 'Print' to print scores, 'Quit' to exit");
+    Console.WriteLine("'New' to play new game, 'Print' to print scores, 'Quit' to exit\n");
     string userChoice = Console.ReadLine();
     // Resets score for a new game
     score = 0;
@@ -69,19 +70,19 @@ void GameLoop()
         {
             case 1:
                 answer = number1 + number2;
-                Console.WriteLine($"What is {number1} + {number2}?");
+                Console.WriteLine($"\nWhat is {number1} + {number2}?");
                 break;
             case 2:
                 answer = number1 - number2;
-                Console.WriteLine($"What is {number1} - {number2}?");
+                Console.WriteLine($"\nWhat is {number1} - {number2}?");
                 break;
             case 3:
                 answer = number1 / number2;
-                Console.WriteLine($"What is {number1} / {number2}?");
+                Console.WriteLine($"\nWhat is {number1} / {number2}?");
                 break;
             case 4:
                 answer = number1 * number2;
-                Console.WriteLine($"What is {number1} * {number2}?");
+                Console.WriteLine($"\nWhat is {number1} * {number2}?");
                 break;
         }
 
