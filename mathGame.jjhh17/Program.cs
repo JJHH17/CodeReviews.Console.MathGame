@@ -1,7 +1,4 @@
-﻿// Allow the user to print their scores
-
-
-Console.WriteLine("Welcome to Math Game!");
+﻿Console.WriteLine("Welcome to Math Game!");
 Console.WriteLine("Enter an operator and we will give you a math question");
 
 // Implementing score variable
@@ -141,8 +138,6 @@ void GameLoop()
 }
 
 // Method used for printing scores
-
-// TODO : FIX THE ZERO GAMES PLAYED BUG
 void PrintScores()
 {
     if (games == 0)
