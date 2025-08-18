@@ -18,8 +18,8 @@ int games = 0;
 
 // Generating random numbers
 Random random = new Random();
-int number1;
-int number2;
+int number1 = random.Next(1, 50);
+int number2 = random.Next(1, 50);
 int answer;
 char operatorInput = '+';
 
@@ -29,6 +29,7 @@ int number2Int;
 
 // Main program loop
 SelectOperator();
+GetAnswer(number1, operatorInput, number2);
 
 // Allows user to select operator
 void SelectOperator()
@@ -112,7 +113,15 @@ void GetAnswer(int num1, char operatorInput, int num2)
             Console.WriteLine($"Target Answer: {answer}");
             break;
         case '/':
-            answer = num1 / num2;
+            if (num1 > num2)
+            {
+                answer = num1 / num2;
+            }
+            else
+            {
+                answer = num2 / num1;
+
+            }
             Console.WriteLine($"Target Answer: {answer}");
             break;
         case '*':
