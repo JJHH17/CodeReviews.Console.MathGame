@@ -6,9 +6,10 @@ Console.WriteLine("Enter an operator and we will give you a math question");
 
 // Implementing score variable
 int score = 0;
-int games = 1;
+int games = 0;
+int attempts = 0;
 // Array to contain scores
-int[] scoreArray = new int[games];
+int[] scoreArray = new int[0];
 bool menuLoop = true;
 
 // Main menu
@@ -24,9 +25,10 @@ while (menuLoop)
     {
         case "new":
             GameLoop();
+            games++;
             break;
         case "print":
-            Console.WriteLine("Coming soon!");
+            PrintScores();
             break;
         case "quit":
             menuLoop = false;
@@ -36,13 +38,6 @@ while (menuLoop)
             break;
     }
 }
-
-// Adds score to array
-scoreArray[games - 1] = score;
-// Increments quantity of games
-games++;
-// Resizes array
-Array.Resize(ref scoreArray, games + 1);
 
 // Main game loop
 void GameLoop()
@@ -113,25 +108,52 @@ void GameLoop()
         {
             Console.WriteLine("Correct!");
             score++;
+            attempts++;
         }
         else if (operatorInputInt == 2 && number1 - number2 == userAnswer)
         {
             Console.WriteLine("Correct!");
             score++;
+            attempts++;
         }
         else if (operatorInputInt == 3 && number1 / number2 == userAnswer)
         {
             Console.WriteLine("Correct!");
             score++;
+            attempts++;
         }
         else if (operatorInputInt == 4 && number1 * number2 == userAnswer)
         {
             Console.WriteLine("Correct!");
             score++;
+            attempts++;
         }
         else
         {
             Console.WriteLine("Incorrect");
+            attempts++;
+        }
+    }
+    // Resizes array
+    Array.Resize(ref scoreArray, games + 1);
+    // Adds score to array
+    scoreArray[games] = attempts;
+}
+
+// Method used for printing scores
+
+// TODO : FIX THE ZERO GAMES PLAYED BUG
+void PrintScores()
+{
+    if (games == 0)
+    {
+        Console.WriteLine("There are currently 0 games stored");
+    }
+    else if (games > 0)
+    {
+        for (int i = 0; i < scoreArray.Length; i++)
+        {
+            Console.WriteLine($"Game {i + 1}: This game took {scoreArray[i]} attempts to complete");
         }
     }
 }
