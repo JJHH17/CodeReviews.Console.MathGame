@@ -1,14 +1,12 @@
-﻿// Generate 2 random numbers
-
-// Generate an answer
-
-// prompt user for answer
+﻿// prompt user for answer
 
 // Increment score
 
 // Add score to array
 
 // Loop game
+
+// Add a games counter for when game ends
 
 // Allow user to print game results
 
@@ -62,4 +60,54 @@ switch (operatorInputInt)
         break;
 }
 
-// Printing the result
+// Prompting the user for an answer
+int userAnswer;
+while (true)
+{
+    string userAnswerString = Console.ReadLine();
+    if (int.TryParse(userAnswerString, out userAnswer))
+    {
+        break;
+    }
+    else
+    {
+        Console.WriteLine("Please enter a valid numeric answer");
+    }
+}
+
+// Checking if answer is correct
+if (operatorInputInt == 1 && number1 + number2 == userAnswer)
+{
+    Console.WriteLine("Correct!");
+}
+else
+{
+    Console.WriteLine("Incorrect");
+}
+
+if (operatorInputInt == 1 && number1 - number2 == userAnswer)
+{
+    Console.WriteLine("Correct!");
+}
+else
+{
+    Console.WriteLine("Incorrect");
+}
+
+if (operatorInputInt == 1 && number1 / number2 == userAnswer)
+{
+    Console.WriteLine("Correct!");
+}
+else
+{
+    Console.WriteLine("Incorrect");
+}
+
+if (operatorInputInt == 1 && number1 * number2 == userAnswer)
+{
+    Console.WriteLine("Correct!");
+}
+else
+{
+    Console.WriteLine("Incorrect");
+}
