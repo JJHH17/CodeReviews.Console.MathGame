@@ -1,4 +1,13 @@
-﻿Console.WriteLine("Welcome to MathGame!");
+﻿/*
+
+TODO:
+- Present the user with 2 integers
+- They need to enter the sum of those two ints
+
+*/
+
+
+Console.WriteLine("Welcome to MathGame!");
 Console.WriteLine("Enter an operator and answer the given question!");
 Console.WriteLine("Get all 3 questions right to win!");
 
@@ -12,37 +21,57 @@ Random random = new Random();
 int number1;
 int number2;
 int answer;
+char operatorInput = '+';
 
 // This is where user input will be stored and collected
 int number1Int;
 int number2Int;
 
 // Main program loop
-while (score != 3)
+SelectOperator();
+
+// Allows user to select operator
+void SelectOperator()
 {
-    number1 = random.Next(0, 30);
-    number2 = random.Next(0, 30);
+    Console.WriteLine("Enter the operator you wish to use.");
+    Console.WriteLine("1. + Addition, 2. - Subtraction, 3. / Division, 4. * Multiplication");
+    int operatorInt;
+    bool active = true;
 
-    // Collecting the operator input and generating the answer
-    char operatorSelection = OperatorInput();
-    answer = number1 + operatorSelection + number2;
-    Console.WriteLine($"Answer: {answer}");
-
-    Console.WriteLine("Enter number 1");
-    SetNumber1();
-
-    Console.WriteLine("Enter number 2");
-    SetNumer2();
-
-    switch (operatorSelection)
+    while (active)
     {
-        case '+':
-            AdditionResult(number1Int, number2Int);
-            break;
+        string operatorString = Console.ReadLine();
+
+        if (int.TryParse(operatorString, out operatorInt))
+        {
+            switch (operatorInt)
+            {
+                case 1:
+                    OperatorSelectionFinal(1);
+                    active = false;
+                    break;
+                case 2:
+                    OperatorSelectionFinal(2);
+                    active = false;
+                    break;
+                case 3:
+                    OperatorSelectionFinal(3);
+                    active = false;
+                    break;
+                case 4:
+                    OperatorSelectionFinal(4);
+                    active = false;
+                    break;
+                default:
+                    Console.WriteLine("Unsupported value detected, reverting to default value (addition)");
+                    active = false;
+                    OperatorSelectionFinal(1);
+                    break;
+            }
         }
         else
         {
-            Console.WriteLine("Please enter a valid integer");
+            Console.WriteLine("Please enter a valid option");
         }
     }
 }
