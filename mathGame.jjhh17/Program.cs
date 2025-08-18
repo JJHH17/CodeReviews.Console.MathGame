@@ -1,8 +1,4 @@
-﻿// prompt user for answer
-
-// Increment score
-
-// Add score to array
+﻿// Add score to array
 
 // Loop game
 
@@ -14,7 +10,6 @@
 
 Console.WriteLine("Welcome to Math Game!");
 Console.WriteLine("Enter an operator and we will give you a math question");
-
 Console.WriteLine("1. Addition +, 2. Subtraction -, 3. Division /, 4. Multiplication *");
 
 // Selecting the operator via number input
@@ -75,39 +70,35 @@ while (true)
     }
 }
 
+// Implementing score variable
+int score = 0;
+int games = 0;
+// Array to contain scores
+int[] scoreArray = new int[games + 1];
+
 // Checking if answer is correct
 if (operatorInputInt == 1 && number1 + number2 == userAnswer)
 {
     Console.WriteLine("Correct!");
+    score++;
+}
+else if (operatorInputInt == 2 && number1 - number2 == userAnswer)
+{
+    Console.WriteLine("Correct!");
+    score++;
+}
+else if (operatorInputInt == 3 && number1 / number2 == userAnswer)
+{
+    Console.WriteLine("Correct!");
+    score++;
+}
+else if (operatorInputInt == 4 && number1 * number2 == userAnswer)
+{
+    Console.WriteLine("Correct!");
+    score++;
 }
 else
 {
     Console.WriteLine("Incorrect");
 }
 
-if (operatorInputInt == 1 && number1 - number2 == userAnswer)
-{
-    Console.WriteLine("Correct!");
-}
-else
-{
-    Console.WriteLine("Incorrect");
-}
-
-if (operatorInputInt == 1 && number1 / number2 == userAnswer)
-{
-    Console.WriteLine("Correct!");
-}
-else
-{
-    Console.WriteLine("Incorrect");
-}
-
-if (operatorInputInt == 1 && number1 * number2 == userAnswer)
-{
-    Console.WriteLine("Correct!");
-}
-else
-{
-    Console.WriteLine("Incorrect");
-}
