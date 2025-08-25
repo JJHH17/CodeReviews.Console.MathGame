@@ -9,7 +9,6 @@ int attempts = 0;
 int[] scoreArray = new int[0];
 bool menuLoop = true;
 
-// Main menu
 while (menuLoop)
 {
     Console.WriteLine("Select an option");
@@ -68,12 +67,10 @@ void GameLoop()
                 answer = number1 + number2;
                 Console.WriteLine($"\nWhat is {number1} + {number2}?");
                 break;
-
             case 2:
                 answer = number1 - number2;
                 Console.WriteLine($"\nWhat is {number1} - {number2}?");
                 break;
-
             case 3:
                 int divisor, quotient, dividend;
                 do
@@ -89,14 +86,12 @@ void GameLoop()
 
                 Console.WriteLine($"\nWhat is {number1} / {number2}?");
                 break;
-
             case 4:
                 answer = number1 * number2;
                 Console.WriteLine($"\nWhat is {number1} * {number2}?");
                 break;
         }
 
-        // Prompting the user for an answer
         int userAnswer;
         while (true)
         {
@@ -141,7 +136,7 @@ void GameLoop()
             attempts++;
         }
     }
-    // For storing scores
+
     Array.Resize(ref scoreArray, games + 1);
     scoreArray[games] = attempts;
 }
