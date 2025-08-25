@@ -2,11 +2,10 @@
 Console.WriteLine("Enter an operator and we will give you a math question");
 Console.WriteLine("Score up to 3 points to win!\n");
 
-// Implementing score variable
 int score = 0;
 int games = 0;
 int attempts = 0;
-// Array to contain scores
+
 int[] scoreArray = new int[0];
 bool menuLoop = true;
 
@@ -37,12 +36,10 @@ while (menuLoop)
     }
 }
 
-// Main game loop
 void GameLoop()
 {
     while (score != 3)
     {
-        // Selecting the operator via number input
         string operatorInputString;
         int operatorInputInt;
         while (true)
@@ -59,27 +56,40 @@ void GameLoop()
             }
         }
 
-        // Generate 2 random numbers that we will do our calculation with
+        // Random number generation
         Random random = new Random();
         int number1 = random.Next(1, 50);
         int number2 = random.Next(1, 50);
         int answer;
 
-        // Generate an answer, based on the operator input
         switch (operatorInputInt)
         {
             case 1:
                 answer = number1 + number2;
                 Console.WriteLine($"\nWhat is {number1} + {number2}?");
                 break;
+
             case 2:
                 answer = number1 - number2;
                 Console.WriteLine($"\nWhat is {number1} - {number2}?");
                 break;
+
             case 3:
-                answer = number1 / number2;
+                int divisor, quotient, dividend;
+                do
+                {
+                    divisor = random.Next(1, 11);
+                    quotient = random.Next(1, 11);
+                    dividend = divisor * quotient;
+                } while (dividend > 100);
+
+                number1 = dividend;
+                number2 = divisor;
+                answer = quotient;
+
                 Console.WriteLine($"\nWhat is {number1} / {number2}?");
                 break;
+
             case 4:
                 answer = number1 * number2;
                 Console.WriteLine($"\nWhat is {number1} * {number2}?");
@@ -101,7 +111,6 @@ void GameLoop()
             }
         }
 
-        // Checking if answer is correct
         if (operatorInputInt == 1 && number1 + number2 == userAnswer)
         {
             Console.WriteLine("Correct!");
@@ -132,13 +141,11 @@ void GameLoop()
             attempts++;
         }
     }
-    // Resizes array
+    // For storing scores
     Array.Resize(ref scoreArray, games + 1);
-    // Adds score to array
     scoreArray[games] = attempts;
 }
 
-// Method used for printing scores
 void PrintScores()
 {
     if (games == 0)
